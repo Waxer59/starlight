@@ -3,7 +3,7 @@ title: Internacionalización (i18n)
 description: Aprende a configurar tu sitio Starlight para admitir varios idiomas.
 ---
 
-import FileTree from '../../../../components/file-tree.astro';
+import FileTree from "../../../../components/file-tree.astro";
 
 Starlight proporciona soporte incorporado para sitios multilingües, incluidas las rutas, el contenido de respaldo y el soporte completo de idiomas de derecha a izquierda (RTL).
 
@@ -13,40 +13,40 @@ Starlight proporciona soporte incorporado para sitios multilingües, incluidas l
 
    ```js
    // astro.config.mjs
-   import { defineConfig } from 'astro/config';
-   import starlight from '@astrojs/starlight';
+   import { defineConfig } from "astro/config";
+   import starlight from "@astrojs/starlight";
 
    export default defineConfig({
      integrations: [
        starlight({
-         title: 'My Docs',
+         title: "My Docs",
          // Establece el inglés como el idioma predeterminado para este sitio.
-         defaultLocale: 'en',
+         defaultLocale: "en",
          locales: {
            // Documentación en inglés en `src/content/docs/en/`
            en: {
-             label: 'English',
+             label: "English"
            },
            // Chino simplificado en `src/content/docs/zh/`
            zh: {
-             label: '简体中文',
-             lang: 'zh-CN',
+             label: "简体中文",
+             lang: "zh-CN"
            },
            // Documentación en árabe en `src/content/docs/ar/`
            ar: {
-             label: 'العربية',
-             dir: 'rtl',
-           },
-         },
-       }),
-     ],
+             label: "العربية",
+             dir: "rtl"
+           }
+         }
+       })
+     ]
    });
    ```
 
    Tu `defaultLocale` se utilizará para el contenido y las etiquetas de la UI de respaldo, por lo que elige el idioma en el que es más probable que comiences a escribir contenido o que ya tengas contenido.
 
 2. Crea un directorio para cada idioma en `src/content/docs/`.
-   Por ejemplo, para la configuración mostrada  anteriormente, crea las siguientes carpetas:
+   Por ejemplo, para la configuración mostrada anteriormente, crea las siguientes carpetas:
 
    <FileTree>
 
@@ -71,26 +71,26 @@ Para establecer una configuración regional, usa la clave `root` en tu configura
 
 ```js
 // astro.config.mjs
-import { defineConfig } from 'astro/config';
-import starlight from '@astrojs/starlight';
+import { defineConfig } from "astro/config";
+import starlight from "@astrojs/starlight";
 
 export default defineConfig({
   integrations: [
     starlight({
-      title: 'My Docs',
-      defaultLocale: 'root', // opcional
+      title: "My Docs",
+      defaultLocale: "root", // opcional
       locales: {
         root: {
-          label: 'English',
-          lang: 'en', // lang es obligatorio para los locales raíz
+          label: "English",
+          lang: "en" // lang es obligatorio para los locales raíz
         },
         zh: {
-          label: '简体中文',
-          lang: 'zh-CN',
-        },
-      },
-    }),
-  ],
+          label: "简体中文",
+          lang: "zh-CN"
+        }
+      }
+    })
+  ]
 });
 ```
 
@@ -113,20 +113,20 @@ De forma predeterminada, Starlight es un sitio monolingüe (en inglés). Para cr
 
 ```js
 // astro.config.mjs
-import { defineConfig } from 'astro/config';
-import starlight from '@astrojs/starlight';
+import { defineConfig } from "astro/config";
+import starlight from "@astrojs/starlight";
 export default defineConfig({
   integrations: [
     starlight({
-      title: 'Mis docs',
+      title: "Mis docs",
       locales: {
         root: {
-          label: '简体中文',
-          lang: 'zh-CN',
-        },
-      },
-    }),
-  ],
+          label: "简体中文",
+          lang: "zh-CN"
+        }
+      }
+    })
+  ]
 });
 ```
 
@@ -140,18 +140,18 @@ Si no hay una traducción disponible para un idioma, Starlight mostrará a los l
 
 ## Traduce la UI de Starlight
 
-Starlight proporciona de forma predeterminada traducciones para los textos utilizados en la UI al inglés, checo, francés, alemán, italiano, japonés, holandés, portugués, danés, español, turco y árabe. También damos la bienvenida a [contribuciones para agregar más idiomas predeterminados](https://github.com/withastro/starlight/blob/main/CONTRIBUTING.md).
+Starlight proporciona de forma predeterminada traducciones para los textos utilizados en la UI al inglés, checo, francés, alemán, italiano, japonés, holandés, portugués, danés, español, turco, árabe y noruego. También damos la bienvenida a [contribuciones para agregar más idiomas predeterminados](https://github.com/withastro/starlight/blob/main/CONTRIBUTING.md).
 
 1. Configura la colección de datos `i18n` en `src/content/config.ts` si aún no está configurada:
 
    ```js
    // src/content/config.ts
-   import { defineCollection } from 'astro:content';
-   import { docsSchema, i18nSchema } from '@astrojs/starlight/schema';
+   import { defineCollection } from "astro:content";
+   import { docsSchema, i18nSchema } from "@astrojs/starlight/schema";
 
    export const collections = {
      docs: defineCollection({ schema: docsSchema() }),
-     i18n: defineCollection({ type: 'data', schema: i18nSchema() }),
+     i18n: defineCollection({ type: "data", schema: i18nSchema() })
    };
    ```
 
@@ -172,45 +172,44 @@ Starlight proporciona de forma predeterminada traducciones para los textos utili
 
 Estos son los valores predeterminados en inglés de las cadenas existentes que se incluyen en Starlight:
 
-   ```json
-   {
-     "skipLink.label": "Skip to content",
-     "search.label": "Search",
-     "search.shortcutLabel": "(Press / to Search)",
-     "search.cancelLabel": "Cancel",
-     "search.devWarning": "Search is only available in production builds. \nTry building and previewing the site to test it out locally.",
-     "themeSelect.accessibleLabel": "Select theme",
-     "themeSelect.dark": "Dark",
-     "themeSelect.light": "Light",
-     "themeSelect.auto": "Auto",
-     "languageSelect.accessibleLabel": "Select language",
-     "menuButton.accessibleLabel": "Menu",
-     "sidebarNav.accessibleLabel": "Main",
-     "tableOfContents.onThisPage": "On this page",
-     "tableOfContents.overview": "Overview",
-     "i18n.untranslatedContent": "This content is not available in your language yet.",
-     "page.editLink": "Edit page",
-     "page.lastUpdated": "Last updated:",
-     "page.previousLink": "Next",
-     "page.nextLink": "Previous"
-   }
-   ```
+```json
+{
+  "skipLink.label": "Skip to content",
+  "search.label": "Search",
+  "search.shortcutLabel": "(Press / to Search)",
+  "search.cancelLabel": "Cancel",
+  "search.devWarning": "Search is only available in production builds. \nTry building and previewing the site to test it out locally.",
+  "themeSelect.accessibleLabel": "Select theme",
+  "themeSelect.dark": "Dark",
+  "themeSelect.light": "Light",
+  "themeSelect.auto": "Auto",
+  "languageSelect.accessibleLabel": "Select language",
+  "menuButton.accessibleLabel": "Menu",
+  "sidebarNav.accessibleLabel": "Main",
+  "tableOfContents.onThisPage": "On this page",
+  "tableOfContents.overview": "Overview",
+  "i18n.untranslatedContent": "This content is not available in your language yet.",
+  "page.editLink": "Edit page",
+  "page.lastUpdated": "Last updated:",
+  "page.previousLink": "Next",
+  "page.nextLink": "Previous"
+}
+```
 
+El modal de búsqueda de Starlight está impulsado por la biblioteca [Pagefind](https://pagefind.app/).
+Puedes establecer traducciones para la UI de Pagefind en el mismo archivo JSON utilizando claves `pagefind`:
 
-   El modal de búsqueda de Starlight está impulsado por la biblioteca [Pagefind](https://pagefind.app/).
-   Puedes establecer traducciones para la UI de Pagefind en el mismo archivo JSON utilizando claves `pagefind`:
-
-   ```json
-   {
-     "pagefind.clear_search": "Clear",
-     "pagefind.load_more": "Load more results",
-     "pagefind.search_label": "Search this site",
-     "pagefind.filters_label": "Filters",
-     "pagefind.zero_results": "No results for [SEARCH_TERM]",
-     "pagefind.many_results": "[COUNT] results for [SEARCH_TERM]",
-     "pagefind.one_result": "[COUNT] result for [SEARCH_TERM]",
-     "pagefind.alt_search": "No results for [SEARCH_TERM]. Showing results for [DIFFERENT_TERM] instead",
-     "pagefind.search_suggestion": "No results for [SEARCH_TERM]. Try one of the following searches:",
-     "pagefind.searching": "Searching for [SEARCH_TERM]..."
-   }
-   ```
+```json
+{
+  "pagefind.clear_search": "Clear",
+  "pagefind.load_more": "Load more results",
+  "pagefind.search_label": "Search this site",
+  "pagefind.filters_label": "Filters",
+  "pagefind.zero_results": "No results for [SEARCH_TERM]",
+  "pagefind.many_results": "[COUNT] results for [SEARCH_TERM]",
+  "pagefind.one_result": "[COUNT] result for [SEARCH_TERM]",
+  "pagefind.alt_search": "No results for [SEARCH_TERM]. Showing results for [DIFFERENT_TERM] instead",
+  "pagefind.search_suggestion": "No results for [SEARCH_TERM]. Try one of the following searches:",
+  "pagefind.searching": "Searching for [SEARCH_TERM]..."
+}
+```
